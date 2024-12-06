@@ -8,13 +8,15 @@ const EXAMPLE_INPUT2: string = `xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](
 
 function multiplyInput(input: string): number {
 	const mults: string[] = input.match(/mul\(\d{1,3},\d{1,3}\)/g) || [];
-	return  mults.map((mult: string) => {
-		if (mult === null) {
-			return 0;
-		}
-		const [_x, a, b] = (mult.match(/mul\((\d{1,3}),(\d{1,3})\)/) || [0, 0]).map(Number);
-		return a * b;
-	}).reduce((acc, cur) => acc + cur, 0);
+	return mults
+		.map((mult: string) => {
+			if (mult === null) {
+				return 0;
+			}
+			const [_x, a, b] = (mult.match(/mul\((\d{1,3}),(\d{1,3})\)/) || [0, 0]).map(Number);
+			return a * b;
+		})
+		.reduce((acc, cur) => acc + cur, 0);
 }
 
 function multiplyInputWithDosAndDonts(input: string) {
@@ -22,9 +24,9 @@ function multiplyInputWithDosAndDonts(input: string) {
 	let sum = 0;
 	let shouldMultiply = true;
 	for (let i = 0; i < matches.length; i++) {
-		if (matches[i] === 'do()' ) {
+		if (matches[i] === 'do()') {
 			shouldMultiply = true;
-		} else if (matches[i] === 'don\'t()' ) {
+		} else if (matches[i] === "don't()") {
 			shouldMultiply = false;
 		} else if (shouldMultiply) {
 			sum += multiplyInput(matches[i]);
