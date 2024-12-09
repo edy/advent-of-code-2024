@@ -1,6 +1,6 @@
-import { join } from 'jsr:@std/path';
 import { assertEquals } from '@std/assert/equals';
-const PUZZLE_INPUT = await Deno.readTextFile(join(import.meta.dirname as string, './input.txt'));
+import { loadPuzzle } from '../loadPuzzle.ts';
+const PUZZLE_INPUT = await loadPuzzle(4);
 
 const EXAMPLE_INPUT: string = `
 MMMSXXMASM
@@ -76,7 +76,7 @@ const countXmas = (input: string) => {
 		}
 	}
 	return counter;
-}
+};
 
 const countMAS = (input: string) => {
 	const parsedInput = parseInput(input);
@@ -89,7 +89,7 @@ const countMAS = (input: string) => {
 		}
 	}
 	return counter;
-}
+};
 
 Deno.test('example input 1', () => assertEquals(countXmas(EXAMPLE_INPUT), 18));
 Deno.test('puzzle input 1', () => assertEquals(countXmas(PUZZLE_INPUT), 2554));
