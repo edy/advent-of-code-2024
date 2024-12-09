@@ -65,6 +65,11 @@
     "dependencies": [
       "jsr:@std/assert@1",
       "npm:@biomejs/biome@^1.9.4"
-    ]
+    ],
+    "packageJson": {
+      "dependencies": [
+        "npm:@biomejs/biome@^1.9.4"
+      ]
+    }
   }
 }
