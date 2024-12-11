@@ -5,7 +5,7 @@ export const loadPuzzle = async (puzzleId: number): Promise<string> => {
 
 	try {
 		await Deno.lstat(filePath);
-		return await Deno.readTextFile(filePath);
+		return (await Deno.readTextFile(filePath)).trim();
 	} catch (err) {
 		if (!(err instanceof Deno.errors.NotFound)) {
 			throw err;
